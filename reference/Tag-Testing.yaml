@@ -186,3 +186,9 @@ components:
         - lastName
         - email
         - emailVerified
+    Users:
+      title: Users
+      type: object
+      properties:
+        id:
+          type: string
