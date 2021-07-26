@@ -1,8 +1,14 @@
 openapi: 3.1.0
 info:
-  title: Tag Testing
+  title: Server Test
   version: '1.0'
-servers: []
+  description: Let's put some text right here.
+  summary: Testing the display of the servers
+servers:
+  - url: 'https://nucleus.hubuc.cloud/v1'
+    description: Production Server
+  - url: 'https://sandbox-nucleus.hubuc.cloud/v1'
+    description: Sandbox Server
 paths:
   '/users/{userId}':
     parameters:
@@ -14,8 +20,7 @@ paths:
         description: Id of an existing user.
     get:
       summary: Get User Info by User ID
-      tags:
-        - Tag1
+      tags: []
       responses:
         '200':
           description: User Found
@@ -185,12 +190,3 @@ components:
         - lastName
         - email
         - emailVerified
-    news:
-      title: news
-      type: object
-      properties:
-        id:
-          type: string
-      examples:
-        - id: string
-        - id: string
