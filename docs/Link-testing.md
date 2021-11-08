@@ -9,4 +9,6 @@ The beginning of an awesome article...
 [User link from docs](https://erik.stoplight.io/docs/symmetrical-garbanzo/b3A6MTY2NzgyOTU-create-new-user)
 
 
-[with token](/b3A6MTY2NzgyOTU-create-new-user)
+[with token](/symmetrical-garbanzo/b3A6MTY2NzgyOTU-create-new-user)
+
+https://erik.stoplight.io/docs/symmetrical-garbanzo/b3A6MTY2NzgyOTU-create-new-user
