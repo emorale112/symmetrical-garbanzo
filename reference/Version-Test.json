@@ -1,0 +1,342 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Version Test",
+    "version": "1.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "type": "integer",
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "Id of an existing user."
+        }
+      ],
+      "get": {
+        "summary": "Get User Info by User ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "User Found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "Get User Alice Smith": {
+                "id": 142,
+                "firstName": "Alice",
+                "lastName": "Smith",
+                "email": "alice.smith@gmail.com",
+                "dateOfBirth": "1997-10-31",
+                "emailVerified": true,
+                "signUpDate": "2019-08-24"
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "schema": {
+              "type": "null"
+            },
+            "examples": {}
+          }
+        },
+        "operationId": "get-users-userId",
+        "description": "Retrieve the information of the user with the matching user ID."
+      },
+      "patch": {
+        "summary": "Update User Information",
+        "operationId": "patch-users-userId",
+        "responses": {
+          "200": {
+            "description": "User Updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "Update User Rebecca Baker": {
+                "id": 13,
+                "firstName": "Rebecca",
+                "lastName": "Baker",
+                "email": "rebecca@gmail.com",
+                "dateOfBirth": "1985-10-02",
+                "emailVerified": false,
+                "createDate": "2019-08-24"
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "schema": {
+              "type": "null"
+            }
+          },
+          "409": {
+            "description": "Email Already Taken",
+            "schema": {
+              "type": "null"
+            }
+          }
+        },
+        "description": "Update the information of an existing user.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "If a new email is given, the user's email verified property will be set to false."
+                },
+                "dateOfBirth": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Patch user properties to update.",
+            "x-examples": {
+              "Update First Name": {
+                "firstName": "Rebecca"
+              },
+              "Update Email": {
+                "email": "rebecca@gmail.com"
+              },
+              "Update Last Name & Date of Birth": {
+                "lastName": "Baker",
+                "dateOfBirth": "1985-10-02"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "Create New User",
+        "operationId": "post-user",
+        "responses": {
+          "200": {
+            "description": "User Created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Missing Required Information",
+            "schema": {
+              "type": "null"
+            }
+          },
+          "409": {
+            "description": "Email Already Taken",
+            "schema": {
+              "type": "null"
+            }
+          }
+        },
+        "description": "Create a new user.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "dateOfBirth": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "dateOfBirth"
+              ]
+            },
+            "description": "Post the necessary fields for the API to create a new user.",
+            "x-examples": {
+              "Create User Bob Fellow": {
+                "firstName": "Bob",
+                "lastName": "Fellow",
+                "email": "bob.fellow@gmail.com",
+                "dateOfBirth": "1996-08-24"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "title": "User",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the given user."
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "example": "1997-10-31"
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "description": "Set to true if the user's email has been verified."
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The date that the user was created."
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "emailVerified"
+      ]
+    },
+    "collection-model": {
+      "title": "Collection Model",
+      "type": "object",
+      "example": {
+        "ID": "M0934586001573045254",
+        "title": "My first Publication",
+        "description": "It seems your publication isn't ready to go worldwide yet, so let's fix that right now! All you need to do is fill in some basic information about your publication so readers can search for it more easily.",
+        "language": "en",
+        "type": 1,
+        "category": 13,
+        "adult_content": false,
+        "subscription_status": "paid",
+        "issue_price": 0.99,
+        "preview_pages": "2-4"
+      },
+      "x-examples": {
+        "example-1": {
+          "ID": "M0934586001573045254",
+          "title": "My first Publication",
+          "description": null,
+          "language": "en",
+          "type": 1,
+          "category": 13,
+          "adult_content": false,
+          "subscription_status": "paid",
+          "issue_price": 0.99,
+          "preview_pages": "2-4"
+        }
+      },
+      "x-internal": true,
+      "properties": {
+        "ID": {
+          "type": "string",
+          "description": "The id of collection"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of collection"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language code of collection"
+        },
+        "type": {
+          "type": "integer",
+          "description": "The type id of collection",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+        "category": {
+          "type": "integer",
+          "description": "The category id of collection",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "x-nullable": true
+        },
+        "adult_content": {
+          "type": "boolean",
+          "description": "The property indicating whether all new created publications of collection contain adult content or not."
+        },
+        "subscription_status": {
+          "type": "string",
+          "enum": [
+            "free",
+            "paid",
+            "disabled"
+          ]
+        },
+        "issue_price": {
+          "type": "number",
+          "description": "The price of collection issue in USD. This property is only returned when collection's subscription status is \"paid\"."
+        },
+        "preview_pages": {
+          "type": "string",
+          "description": "The first and last preview page numbers of collection issues separated with dash. This property is only returned when collection's subscription status is \"paid\".",
+          "pattern": "^([0-9]+)\\-([0-9]+)$"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of collection",
+          "x-nullable": true
+        },
+        "Newdesc": {
+          "description": "New description field",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "ID",
+        "title",
+        "language",
+        "type",
+        "category",
+        "adult_content",
+        "subscription_status",
+        "description"
+      ]
+    }
+  }
+}
