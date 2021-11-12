@@ -12,3 +12,10 @@ The beginning of an awesome article...
 [with token](/symmetrical-garbanzo/b3A6MTY2NzgyOTU-create-new-user)
 
 https://erik.stoplight.io/docs/symmetrical-garbanzo/b3A6MTY2NzgyOTU-create-new-user
+
+
+Column A | Column B | Column C
+---------|----------|---------
+ A1 | B1 | C1
+ A2 | B2 | C2
+ A3 | B3 | C3
