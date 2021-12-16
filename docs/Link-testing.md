@@ -19,3 +19,5 @@ Column A | Column B | Column C
  A1 | B1 | C1
  A2 | B2 | C2
  A3 | B3 | C3
+
+ ![explorer-pudgy-232x270.png](https://stoplight.io/api/v1/projects/cHJqOjcyMDAw/images/dB4ZQeqFQ2E)
